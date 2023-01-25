@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "62584c26-c828-4a09-8c46-1503203c0614",
+		"name": "Routing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/routing/countries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"routing",
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get by code",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/routing/countries/MEX",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"routing",
+						"countries",
+						"MEX"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"BLZ\",\r\n    \"name\": \"Belize\",\r\n    \"latitude\": 17.25,\r\n    \"longitude\": -88.75,\r\n    \"borders\": [\r\n        {\r\n            \"id\": {\r\n                \"countryCode\": \"BLZ\",\r\n                \"borderCountryCode\": \"MEX\"\r\n            }\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/routing/countries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"routing",
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"MEX\",\r\n    \"name\": \"Mexico\",\r\n    \"latitude\": 23.0,\r\n    \"longitude\": -102.0,\r\n    \"borders\": [\r\n        {\r\n            \"id\": {\r\n                \"countryCode\": \"MEX\",\r\n                \"borderCountryCode\": \"BLZ\"\r\n            }\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/routing/countries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"routing",
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/routing/countries/USA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"routing",
+						"countries",
+						"USA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create route DIJKSTRA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/routing/DIJKSTRA/BLZ/USA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"routing",
+						"DIJKSTRA",
+						"BLZ",
+						"USA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create route BFS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/routing/BFS/BLZ/USA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"routing",
+						"BFS",
+						"BLZ",
+						"USA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Countries Info (From Modsen Link)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://raw.githubusercontent.com/mledoze/countries/master/countries.json",
+					"protocol": "https",
+					"host": [
+						"raw",
+						"githubusercontent",
+						"com"
+					],
+					"path": [
+						"mledoze",
+						"countries",
+						"master",
+						"countries.json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
