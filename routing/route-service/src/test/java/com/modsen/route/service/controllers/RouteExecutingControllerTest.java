@@ -11,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.verify;
@@ -36,7 +37,8 @@ class RouteExecutingControllerTest {
     }
 
     @Test
-    public void testGetRoute() throws Exception {
+    public void testGetRouteSuccess() throws Exception {
+        // Given
         String algorithm = "BFS";
         String from = "A";
         String to = "C";
@@ -45,11 +47,29 @@ class RouteExecutingControllerTest {
         String exceptedRouteJson = mapper.writeValueAsString(exceptedRoute);
         when(routeExecutingService.getRoute(algorithm, from, to)).thenReturn(exceptedRoute);
 
+        // When
         mockMvc.perform(get("/api/v1/routing/{algorithm}/{from}/{to}", algorithm, from, to))
 
                 // Then
                 .andExpect(status().isOk())
                 .andExpect(content().json(exceptedRouteJson));
+        verify(routeExecutingService).getRoute(algorithm, from, to);
+    }
+
+    @Test
+    public void testGetRouteBadRequest() throws Exception {
+        // Given
+        String algorithm = "BFS";
+        String from = "A";
+        String to = "C";
+        List<String> exceptedRoute = new ArrayList<>();
+        when(routeExecutingService.getRoute(algorithm, from, to)).thenReturn(exceptedRoute);
+
+        // When
+        mockMvc.perform(get("/api/v1/routing/{algorithm}/{from}/{to}", algorithm, from, to))
+
+                // Then
+                .andExpect(status().isBadRequest());
         verify(routeExecutingService).getRoute(algorithm, from, to);
     }
 }
