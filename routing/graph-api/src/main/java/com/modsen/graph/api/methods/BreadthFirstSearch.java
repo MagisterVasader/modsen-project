@@ -20,7 +20,7 @@ public class BreadthFirstSearch<V> extends SearchPath<V> {
 
     @Override
     public List<V> findPath(V source, V target) {
-        if (isExistInGraph(source) && isExistInGraph(target)) {
+        if (graph.containsVertex(source) && graph.containsVertex(target)) {
             if (source.equals(target)) {
                 return List.of(source);
             }

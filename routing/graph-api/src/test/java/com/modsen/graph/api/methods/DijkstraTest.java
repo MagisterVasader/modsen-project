@@ -57,4 +57,11 @@ class DijkstraTest {
         List<String> actualPath = dijkstra.findPath("A", "D");
         assertEquals(expectedPath, actualPath);
     }
+
+    @Test
+    public void testFindPathForNonNullVertex() {
+        List<String> expectedPath = new ArrayList<>();
+        List<String> actualPath = dijkstra.findPath(null, null);
+        assertEquals(expectedPath, actualPath);
+    }
 }

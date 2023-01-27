@@ -45,6 +45,7 @@ class GraphTest {
         assertFalse(graph.getEdgesSet().isEmpty());
         assertFalse(graph.addEdge(null, "D"));
         assertFalse(graph.addEdge("C", null));
+        assertFalse(graph.addEdge(null, null));
         assertFalse(graph.addEdge("C", "D"));
     }
 

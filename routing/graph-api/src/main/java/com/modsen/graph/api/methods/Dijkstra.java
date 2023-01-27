@@ -10,9 +10,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Set;
 
 public class Dijkstra<V> extends SearchPath<V> {
+
+    private static final Integer INFINITY_DIStANCE = Integer.MAX_VALUE;
 
     public Dijkstra(Graph<V> graph) {
         super(graph);
@@ -20,7 +23,7 @@ public class Dijkstra<V> extends SearchPath<V> {
 
     @Override
     public List<V> findPath(V source, V target) {
-        if (isExistInGraph(source) && isExistInGraph(target)) {
+        if (graph.containsVertex(source) && graph.containsVertex(target)) {
             if (source.equals(target)) {
                 return List.of(source);
             }
@@ -28,10 +31,10 @@ public class Dijkstra<V> extends SearchPath<V> {
             Map<V, Integer> distance = new HashMap<>();
             Map<V, V> previous = new HashMap<>();
             Set<V> unvisited = new HashSet<>();
-            PriorityQueue<V> queue = new PriorityQueue<>(Comparator.comparingInt(distance::get));
+            Queue<V> queue = new PriorityQueue<>(Comparator.comparingInt(distance::get));
 
             for (V vertex : graph.getVertexSet()) {
-                distance.put(vertex, Integer.MAX_VALUE);
+                distance.put(vertex, INFINITY_DIStANCE);
                 previous.put(vertex, null);
                 unvisited.add(vertex);
             }
@@ -57,7 +60,7 @@ public class Dijkstra<V> extends SearchPath<V> {
                 }
             }
 
-            if (distance.get(target) == Integer.MAX_VALUE) {
+            if (INFINITY_DIStANCE.equals(distance.get(target))) {
                 return Collections.emptyList();
             }
             return getPath(previous, target);

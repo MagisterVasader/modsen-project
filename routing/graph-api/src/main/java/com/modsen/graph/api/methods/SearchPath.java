@@ -19,13 +19,6 @@ public abstract class SearchPath<V> {
 
     public abstract List<V> findPath(V source, V target);
 
-    protected boolean isExistInGraph(V ver) {
-        if (ver != null) {
-            return graph.containsVertex(ver);
-        }
-        return false;
-    }
-
     protected List<V> getPath(Map<V, V> previous, V target) {
         List<V> path = new ArrayList<>();
         V current = target;
@@ -34,6 +27,6 @@ public abstract class SearchPath<V> {
             current = previous.get(current);
         }
         Collections.reverse(path);
-        return path;
+        return Collections.unmodifiableList(path);
     }
 }

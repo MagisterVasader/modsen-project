@@ -57,4 +57,11 @@ class BreadthFirstSearchTest {
         List<Integer> actualPath = breadthFirstSearch.findPath(1, 4);
         assertEquals(expectedPath, actualPath);
     }
+
+    @Test
+    public void testFindPathForNonNullVertex() {
+        List<Integer> expectedPath = new ArrayList<>();
+        List<Integer> actualPath = breadthFirstSearch.findPath(null, null);
+        assertEquals(expectedPath, actualPath);
+    }
 }

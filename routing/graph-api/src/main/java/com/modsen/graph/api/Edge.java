@@ -1,21 +1,15 @@
 package com.modsen.graph.api;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Edge<V> {
 
     private V source;
     private V target;
-    private Integer weight;
+    private int weight;
 }
