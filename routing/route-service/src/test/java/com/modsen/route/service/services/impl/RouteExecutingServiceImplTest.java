@@ -117,9 +117,7 @@ class RouteExecutingServiceImplTest {
 
     @Test
     public void testGetRouteWithUnsupportedAlgorithm() {
-        // Given
-        when(countryService.getCountries()).thenReturn(countries);
-
+        // Given, When, Then
         assertThrows(IllegalArgumentException.class, () -> routeExecutingService.getRoute("UNSUPPORTED", "A", "C"));
     }
 }

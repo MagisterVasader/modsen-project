@@ -1,6 +1,7 @@
 package com.modsen.route.service.services.impl;
 
 
+import com.modsen.graph.api.Graph;
 import com.modsen.graph.api.methods.SearchAlgorithm;
 import com.modsen.route.service.model.Border;
 import com.modsen.route.service.model.Country;
@@ -10,6 +11,7 @@ import com.modsen.route.service.utils.GraphMethodsFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +23,11 @@ public class RouteExecutingServiceImpl implements RouteExecutingService {
 
     @Override
     public List<String> getRoute(String algorithm, String from, String to) {
+        if (!SearchAlgorithm.checkName(algorithm)) {
+            throw new IllegalArgumentException("Unsupported algorithm: " + algorithm);
+        }
+        SearchAlgorithm algo = SearchAlgorithm.valueOf(algorithm);
+
         var graph = GraphMethodsFactory.<String>getGraph();
         var countries = countryService.getCountries();
 
@@ -35,7 +42,11 @@ public class RouteExecutingServiceImpl implements RouteExecutingService {
                     .forEach(id -> graph.addEdge(id.getCountryCode(), id.getBorderCountryCode()));
         }
 
-        switch (SearchAlgorithm.valueOf(algorithm)) {
+        return getPath(from, to, algo, graph);
+    }
+
+    private List<String> getPath(String from, String to, SearchAlgorithm algorithm, Graph<String> graph) {
+        switch (algorithm) {
             case DIJKSTRA:
                 var dijkstra = GraphMethodsFactory.getDijkstra(graph);
                 return dijkstra.findPath(from, to);
@@ -43,7 +54,7 @@ public class RouteExecutingServiceImpl implements RouteExecutingService {
                 var breadthFirstSearch = GraphMethodsFactory.getBreadthFirstSearch(graph);
                 return breadthFirstSearch.findPath(from, to);
             default:
-                throw new IllegalArgumentException("Unsupported algorithm: " + algorithm);
+                return Collections.emptyList();
         }
     }
 }
