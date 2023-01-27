@@ -27,10 +27,10 @@ public class RouteExecutingController {
                                                  @PathVariable String to) {
         LOGGER.info("[RT] Getting route between " + from + " to " + to + " using " + algorithm);
         List<String> route = routeExecutingService.getRoute(algorithm, from, to);
+        LOGGER.info("[RT] Found route: " + route);
         if (route.isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
-        LOGGER.info("[RT] Found route: " + route);
         return ResponseEntity.ok(route);
     }
 }
