@@ -3,7 +3,7 @@ package com.modsen.graph.api.methods;
 import com.modsen.graph.api.Edge;
 import com.modsen.graph.api.Graph;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -58,10 +58,10 @@ public class Dijkstra<V> extends SearchPath<V> {
             }
 
             if (distance.get(target) == Integer.MAX_VALUE) {
-                return new ArrayList<>();
+                return Collections.emptyList();
             }
             return getPath(previous, target);
         }
-        return new ArrayList<>();
+        return Collections.emptyList();
     }
 }

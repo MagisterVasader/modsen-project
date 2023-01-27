@@ -3,7 +3,7 @@ package com.modsen.graph.api.methods;
 import com.modsen.graph.api.Edge;
 import com.modsen.graph.api.Graph;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -57,6 +57,6 @@ public class BreadthFirstSearch<V> extends SearchPath<V> {
                 }
             }
         }
-        return new ArrayList<>();
+        return Collections.emptyList();
     }
 }
