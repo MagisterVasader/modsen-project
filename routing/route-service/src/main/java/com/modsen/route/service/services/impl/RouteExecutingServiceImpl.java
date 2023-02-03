@@ -45,6 +45,7 @@ public class RouteExecutingServiceImpl implements RouteExecutingService {
         return getPath(from, to, algo, graph);
     }
 
+    // TODO: Remove switch statement
     private List<String> getPath(String from, String to, SearchAlgorithm algorithm, Graph<String> graph) {
         switch (algorithm) {
             case DIJKSTRA:
